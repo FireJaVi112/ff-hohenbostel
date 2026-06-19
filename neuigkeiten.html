@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuigkeiten – FF Hohenbostel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo" onclick="location.href='index.html'">
+    <div class="nav-emblem"><svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div>
+    <div class="nav-name">FF Hohenbostel<small>Freiwillige Feuerwehr</small></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" data-page="index.html">Startseite</a></li>
+    <li><a href="abteilungen.html" data-page="abteilungen.html">Abteilungen</a></li>
+    <li><a href="einsaetze.html" data-page="einsaetze.html">Einsätze</a></li>
+    <li><a href="neuigkeiten.html" data-page="neuigkeiten.html">Neuigkeiten</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+    <li><a href="tel:112" class="nav-cta">🚒 112</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-orb page-header-orb-1"></div>
+  <div class="page-header-orb page-header-orb-2"></div>
+  <div class="page-header-inner">
+    <div class="page-header-breadcrumb"><a href="index.html">Startseite</a> / Neuigkeiten</div>
+    <h1>Neuigkeiten</h1>
+    <p>Aktuelle Berichte, Veranstaltungen und News aus dem Vereinsleben.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="news-grid" id="news-grid">
+      <div class="news-empty">Wird geladen…</div>
+    </div>
+
+    <div class="insta-cta" style="margin-top:48px">
+      <h3>@feuerwehr_hohenbostel</h3>
+      <p>Aktuelle Einsätze und Einblicke direkt auf Instagram.</p>
+      <a href="https://www.instagram.com/feuerwehr_hohenbostel/" target="_blank" class="btn-insta">Jetzt folgen</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><div class="footer-logo-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div><span class="footer-logo-text">FF Hohenbostel</span></div>
+      <p class="footer-desc">Ehrenamtlicher Brandschutz und Gemeinschaft in Hohenbostel.</p>
+    </div>
+    <div class="footer-col"><h4>Seiten</h4><ul>
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="abteilungen.html">Abteilungen</a></li>
+      <li><a href="einsaetze.html">Einsätze</a></li>
+      <li><a href="neuigkeiten.html">Neuigkeiten</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Kontakt</h4>
+      <p>Große Koppel 2<br>29553 Bienenbüttel<br><a href="mailto:info@ff-hohenbostel.de">info@ff-hohenbostel.de</a><br><br>
+      <a href="https://www.ff-hohenbostel.de/about/">Impressum</a> · <a href="https://www.ff-hohenbostel.de/j/privacy">Datenschutz</a></p>
+    </div>
+  </div>
+  <div class="footer-bar"><p>© 2026 Förderverein der Freiwilligen Feuerwehr Hohenbostel e.V. · Im Notfall: 112</p></div>
+</footer>
+
+<script src="main.js"></script>
+<script>
+loadNews().then(data => renderNewsCards(data, 'news-grid', null));
+</script>
+</body>
+</html>

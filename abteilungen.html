@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abteilungen – FF Hohenbostel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo" onclick="location.href='index.html'">
+    <div class="nav-emblem"><svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div>
+    <div class="nav-name">FF Hohenbostel<small>Freiwillige Feuerwehr</small></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" data-page="index.html">Startseite</a></li>
+    <li><a href="abteilungen.html" data-page="abteilungen.html">Abteilungen</a></li>
+    <li><a href="einsaetze.html" data-page="einsaetze.html">Einsätze</a></li>
+    <li><a href="neuigkeiten.html" data-page="neuigkeiten.html">Neuigkeiten</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+    <li><a href="tel:112" class="nav-cta">🚒 112</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-orb page-header-orb-1"></div>
+  <div class="page-header-orb page-header-orb-2"></div>
+  <div class="page-header-inner">
+    <div class="page-header-breadcrumb"><a href="index.html">Startseite</a> / Abteilungen</div>
+    <h1>Unsere Abteilungen</h1>
+    <p>Für jeden ist etwas dabei – von 6 bis 65+ Jahren.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="eyebrow reveal">Übersicht</div>
+    <h2 class="section-title reveal">Vier Abteilungen, ein Team.</h2>
+    <p class="section-sub reveal">Die FF Hohenbostel bietet Menschen jeden Alters eine Heimat. Ob aktiver Einsatzdienst, Nachwuchsarbeit, ideelle Unterstützung oder Ehrenmitgliedschaft – hier findest du deinen Platz.</p>
+
+    <div class="abt-grid">
+
+      <!-- EINSATZABTEILUNG -->
+      <div class="abt-card reveal">
+        <div class="abt-card-top">
+          <div class="abt-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div>
+          <div class="abt-card-name">Einsatzabteilung</div>
+          <div class="abt-card-age">Ab 18 Jahren · Aktiver Einsatzdienst</div>
+        </div>
+        <div class="abt-card-body">
+          <p class="abt-card-desc">Die Einsatzabteilung bildet das Herzstück unserer Feuerwehr. Unsere aktiven Kameradinnen und Kameraden sind rund um die Uhr einsatzbereit und rücken bei Bränden, Unfällen und Hilfeleistungen aus.</p>
+          <ul class="abt-card-features">
+            <li>24/7 Einsatzbereitschaft für Hohenbostel</li>
+            <li>Brandbekämpfung & technische Hilfeleistung</li>
+            <li>Verkehrsunfälle & Personenrettung</li>
+            <li>Regelmäßige Übungen & Ausbildungen</li>
+            <li>Kostenlose Feuerwehrausbildung</li>
+            <li>Moderne Schutzausrüstung & Fahrzeuge</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- JUGENDFEUERWEHR -->
+      <div class="abt-card reveal">
+        <div class="abt-card-top">
+          <div class="abt-card-icon"><svg viewBox="0 0 24 24"><path d="M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-6 9a2 2 0 0 0-2 2v1c0 2.2 3.6 4 8 4s8-1.8 8-4v-1a2 2 0 0 0-2-2H6z"/></svg></div>
+          <div class="abt-card-name">Jugendfeuerwehr</div>
+          <div class="abt-card-age">10 – 17 Jahre</div>
+        </div>
+        <div class="abt-card-body">
+          <p class="abt-card-desc">Die Jugendfeuerwehr bildet unseren Nachwuchs aus. Mit Spaß, Teamgeist und spannenden Aktivitäten werden Jugendliche an das Feuerwehrwesen herangeführt und auf die aktive Laufbahn vorbereitet.</p>
+          <ul class="abt-card-features">
+            <li>Zeltlager & Ausflüge</li>
+            <li>Leistungswettkämpfe auf Kreis- & Landesebene</li>
+            <li>Feuerwehrtechnische Grundausbildung</li>
+            <li>Erste-Hilfe-Ausbildung</li>
+            <li>Gemeinschaft & Teambuilding</li>
+            <li>Übergang in Einsatzabteilung mit 18</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FÖRDERVEREIN -->
+      <div class="abt-card reveal">
+        <div class="abt-card-top">
+          <div class="abt-card-icon"><svg viewBox="0 0 24 24"><path d="M17 10h-2V7l-3-4-3 4v3H7l-2 2v8h14v-8l-2-2zm-5-1.5L13.5 10h-3L12 8.5zm1 9.5h-2v-3h2v3z"/></svg></div>
+          <div class="abt-card-name">Förderverein</div>
+          <div class="abt-card-age">Alle Altersgruppen · Offen für alle</div>
+        </div>
+        <div class="abt-card-body">
+          <p class="abt-card-desc">Als förderndes Mitglied unterstützt du die Feuerwehr materiell und ideell – ohne im aktiven Dienst zu sein. Dein Beitrag hilft uns, beste Ausrüstung zu beschaffen und tolle Veranstaltungen zu organisieren.</p>
+          <ul class="abt-card-features">
+            <li>Finanzielle Unterstützung der Einsatzabteilung</li>
+            <li>Beschaffung von Ausrüstung & Fahrzeugen</li>
+            <li>Organisation von Kinderfest & Osterfeuer</li>
+            <li>Niedrigschwellige Mitgliedschaft möglich</li>
+            <li>Aktive Mitgestaltung als Festausschuss</li>
+            <li>Gemeinschaftliche Veranstaltungen</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ALTERSABTEILUNG -->
+      <div class="abt-card reveal">
+        <div class="abt-card-top">
+          <div class="abt-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+          <div class="abt-card-name">Altersabteilung</div>
+          <div class="abt-card-age">Ab 65 Jahren · Ehrenabteilung</div>
+        </div>
+        <div class="abt-card-body">
+          <p class="abt-card-desc">Die Altersabteilung ehrt unsere verdienten Kameradinnen und Kameraden nach jahrelangem aktivem Dienst. Ihr Wissen und ihre Erfahrung sind für unsere Gemeinschaft unverzichtbar.</p>
+          <ul class="abt-card-features">
+            <li>Ehrenmitgliedschaft nach aktiver Zeit</li>
+            <li>Teilnahme an Veranstaltungen & Feiern</li>
+            <li>Weitergabe von Erfahrung an Nachwuchs</li>
+            <li>Geselliges Beisammensein</li>
+            <li>Jährliche Kameradschaftspflege</li>
+            <li>Teil der Feuerwehrfamilie bleiben</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MITMACHEN -->
+<section class="mitmachen">
+  <div class="mitmachen-inner">
+    <h2>Bereit mitzumachen?</h2>
+    <p>Egal ob Einsatzdienst, Förderverein oder Jugendarbeit – melde dich einfach bei uns!</p>
+    <a href="mailto:info@ff-hohenbostel.de" class="btn-white">Kontakt aufnehmen</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><div class="footer-logo-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div><span class="footer-logo-text">FF Hohenbostel</span></div>
+      <p class="footer-desc">Ehrenamtlicher Brandschutz und Gemeinschaft in Hohenbostel – rund um die Uhr für euch da.</p>
+    </div>
+    <div class="footer-col"><h4>Seiten</h4><ul>
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="abteilungen.html">Abteilungen</a></li>
+      <li><a href="einsaetze.html">Einsätze</a></li>
+      <li><a href="neuigkeiten.html">Neuigkeiten</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Kontakt</h4>
+      <p>Große Koppel 2<br>29553 Bienenbüttel<br><a href="mailto:info@ff-hohenbostel.de">info@ff-hohenbostel.de</a><br><br>
+      <a href="https://www.ff-hohenbostel.de/about/">Impressum</a> · <a href="https://www.ff-hohenbostel.de/j/privacy">Datenschutz</a></p>
+    </div>
+  </div>
+  <div class="footer-bar"><p>© 2026 Förderverein der Freiwilligen Feuerwehr Hohenbostel e.V. · Im Notfall: 112</p></div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -17,10 +17,9 @@ collections:
     delete: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{nummer}} | {{datum}} – {{title}}"
-    sortable_fields: ["datum", "nummer"]
     fields:
-      - { label: "Einsatznummer", name: "nummer", widget: "number", hint: "Laufende Nummer des Einsatzes" }
-      - { label: "Stichwort / Titel", name: "title", widget: "string", hint: "z.B. Verkehrsunfall B65" }
+      - { label: "Einsatznummer", name: "nummer", widget: "number" }
+      - { label: "Stichwort / Titel", name: "title", widget: "string" }
       - { label: "Datum", name: "datum", widget: "string", hint: "z.B. 19.06.2026" }
       - { label: "Uhrzeit", name: "zeit", widget: "string", hint: "z.B. 14:32" }
       - label: "Wochentag"
@@ -31,12 +30,12 @@ collections:
         name: "typ"
         widget: "select"
         options:
-          - { label: "🔥 Brand", value: "brand" }
-          - { label: "🚑 Hilfeleistung", value: "hilfe" }
-          - { label: "🎓 Übung", value: "ubung" }
-          - { label: "📋 Sonstige", value: "sonstige" }
+          - { label: "Brand", value: "brand" }
+          - { label: "Hilfeleistung", value: "hilfe" }
+          - { label: "Übung", value: "ubung" }
+          - { label: "Sonstige", value: "sonstige" }
       - { label: "Link zum Bericht (optional)", name: "link", widget: "string", required: false }
-      - { label: "Kurzbeschreibung", name: "beschreibung", widget: "text", required: false }
+      - { label: "Kurzbeschreibung (optional)", name: "beschreibung", widget: "text", required: false }
 
   - name: "news"
     label: "Neuigkeiten"

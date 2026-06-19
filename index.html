@@ -4,518 +4,58 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Freiwillige Feuerwehr Hohenbostel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --red: #CC0000;
-  --red2: #E3000F;
-  --red-dark: #990000;
-  --red-light: #fff0f0;
-  --text: #1d1d1f;
-  --text-secondary: #6e6e73;
-  --text-light: #aeaeb2;
-  --bg: #ffffff;
-  --bg-grey: #f5f5f7;
-  --border: rgba(0,0,0,0.09);
-  --dark: #111111;
-  --dark2: #1a1a1a;
-  --radius: 16px;
-}
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-a { text-decoration: none; }
-img { display: block; max-width: 100%; }
-
-/* ═══ NAV ═══ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
-  background: rgba(180,0,0,0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  height: 58px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 10px; cursor: pointer;
-}
-.nav-emblem {
-  width: 36px; height: 36px; background: rgba(255,255,255,0.15);
-  border-radius: 8px; display: flex; align-items: center; justify-content: center;
-  border: 1px solid rgba(255,255,255,0.25);
-}
-.nav-emblem svg { width: 20px; height: 20px; fill: white; }
-.nav-name { font-size: 15px; font-weight: 700; color: white; letter-spacing: -0.3px; }
-.nav-name span { display: block; font-size: 10px; font-weight: 400; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; text-transform: uppercase; }
-.nav-links { display: flex; gap: 2px; list-style: none; }
-.nav-links button, .nav-links a {
-  background: none; border: none; cursor: pointer; font-family: inherit;
-  color: rgba(255,255,255,0.8); font-size: 13.5px; font-weight: 500;
-  padding: 6px 12px; border-radius: 6px;
-  transition: color 0.2s, background 0.2s;
-  display: block;
-}
-.nav-links button:hover, .nav-links a:hover {
-  color: white; background: rgba(255,255,255,0.12);
-}
-.nav-emergency {
-  background: white !important; color: var(--red) !important;
-  padding: 7px 16px !important; border-radius: 20px !important;
-  font-weight: 700 !important; font-size: 13px !important;
-  margin-left: 8px;
-}
-
-/* ═══ HERO ═══ */
-.hero {
-  min-height: 100vh;
-  padding-top: 58px;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  position: relative; overflow: hidden;
-  background: linear-gradient(
-    160deg,
-    #8B0000 0%,
-    #CC0000 25%,
-    #E3000F 50%,
-    #CC0000 75%,
-    #8B0000 100%
-  );
-}
-
-/* animated noise/texture overlay */
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 0;
-}
-
-/* diagonal light sweep */
-.hero::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.08) 0%,
-    transparent 40%,
-    transparent 60%,
-    rgba(0,0,0,0.15) 100%
-  );
-  pointer-events: none; z-index: 0;
-}
-
-/* glow orbs */
-.hero-orb {
-  position: absolute; border-radius: 50%;
-  filter: blur(70px); pointer-events: none; z-index: 0;
-}
-.hero-orb--1 { width: 500px; height: 500px; background: rgba(255,255,255,0.07); top: -100px; left: -100px; animation: orbFloat 8s ease-in-out infinite; }
-.hero-orb--2 { width: 400px; height: 400px; background: rgba(0,0,0,0.2); bottom: -80px; right: -80px; animation: orbFloat 10s ease-in-out infinite reverse; }
-
-@keyframes orbFloat { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-20px)} }
-
-.hero-content { position: relative; z-index: 1; padding: 0 20px; }
-
-.hero-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
-  text-transform: uppercase; color: rgba(255,255,255,0.7);
-  margin-bottom: 20px; animation: fadeUp 0.7s 0.1s ease both;
-}
-.hero-title {
-  font-size: clamp(46px, 7vw, 90px);
-  font-weight: 800; letter-spacing: -2.5px; line-height: 1.02;
-  color: white; max-width: 800px; margin: 0 auto 24px;
-  animation: fadeUp 0.8s 0.2s ease both;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.2);
-}
-.hero-title span { display: block; font-size: clamp(28px,4vw,52px); font-weight: 400; opacity: 0.85; letter-spacing: -1px; }
-
-.hero-sub {
-  font-size: 18px; font-weight: 300; color: rgba(255,255,255,0.75);
-  max-width: 500px; margin: 0 auto 48px; line-height: 1.65;
-  animation: fadeUp 0.8s 0.3s ease both;
-}
-.hero-actions {
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-  animation: fadeUp 0.8s 0.4s ease both;
-}
-
-.btn-white-solid {
-  background: white; color: var(--red);
-  border: none; padding: 14px 30px; border-radius: 30px;
-  font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit;
-  transition: transform 0.15s, box-shadow 0.2s;
-  display: inline-block;
-}
-.btn-white-solid:hover { transform: scale(1.03); box-shadow: 0 8px 28px rgba(0,0,0,0.25); }
-
-.btn-outline-white {
-  background: rgba(255,255,255,0.12); color: white;
-  border: 1.5px solid rgba(255,255,255,0.4); padding: 14px 30px; border-radius: 30px;
-  font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
-  transition: all 0.2s; display: inline-block; backdrop-filter: blur(8px);
-}
-.btn-outline-white:hover { background: rgba(255,255,255,0.22); transform: scale(1.03); }
-
-/* hero stats */
-.hero-stats {
-  display: flex; gap: 0; margin-top: 64px;
-  background: rgba(0,0,0,0.2); border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.15);
-  overflow: hidden; backdrop-filter: blur(12px);
-  animation: fadeUp 0.8s 0.55s ease both;
-}
-.hero-stat {
-  padding: 20px 32px; text-align: center;
-  border-right: 1px solid rgba(255,255,255,0.1);
-}
-.hero-stat:last-child { border-right: none; }
-.hero-stat-num { font-size: 34px; font-weight: 800; color: white; letter-spacing: -1.5px; line-height: 1; }
-.hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
-
-/* scroll arrow */
-.hero-scroll {
-  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-  z-index: 1; animation: bounce 2s ease-in-out infinite;
-}
-.hero-scroll svg { width: 24px; height: 24px; fill: rgba(255,255,255,0.5); }
-@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
-
-/* photo strip */
-.photo-strip { background: var(--dark); padding: 0 0 0; overflow: hidden; }
-.photo-track { display: flex; gap: 12px; width: max-content; animation: scrollTrack 40s linear infinite; }
-.photo-track:hover { animation-play-state: paused; }
-.photo-track img { height: 200px; width: 300px; object-fit: cover; border-radius: 0; flex-shrink: 0; opacity: 0.75; transition: opacity 0.3s; }
-.photo-track img:hover { opacity: 1; }
-
-/* ═══ SECTIONS ═══ */
-.section { padding: 80px 24px; }
-.section--grey { background: var(--bg-grey); }
-.section--dark { background: var(--dark2); }
-.section--red  { background: var(--red); }
-.section-inner { max-width: 960px; margin: 0 auto; }
-
-.eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--red); margin-bottom: 10px;
-  display: flex; align-items: center; gap: 8px;
-}
-.eyebrow::before { content: ''; display: block; width: 3px; height: 16px; background: var(--red); border-radius: 2px; }
-.eyebrow--light { color: rgba(255,120,80,1); }
-.eyebrow--light::before { background: rgba(255,120,80,1); }
-
-.section-title {
-  font-size: clamp(26px,3.5vw,46px); font-weight: 800;
-  letter-spacing: -1.5px; line-height: 1.08;
-  color: var(--text); margin-bottom: 14px;
-}
-.section-title--white { color: white; }
-.section-sub { font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 560px; margin-bottom: 48px; }
-.section-sub--white { color: rgba(255,255,255,0.6); }
-
-/* ═══ ABTEILUNGEN ═══ */
-.abt-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 48px;
-}
-.abt-card {
-  background: white; border-radius: var(--radius);
-  border: 1px solid var(--border); overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-.abt-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-
-.abt-card__header {
-  padding: 28px 24px 20px;
-  background: linear-gradient(135deg, #CC0000, #990000);
-  position: relative; overflow: hidden;
-}
-.abt-card__header::after {
-  content: '';
-  position: absolute; top: -30px; right: -30px;
-  width: 120px; height: 120px; border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-}
-.abt-card__icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.2);
-}
-.abt-card__icon svg { width: 26px; height: 26px; fill: white; }
-.abt-card__name { font-size: 18px; font-weight: 700; color: white; margin-bottom: 4px; }
-.abt-card__age  { font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 500; }
-.abt-card__body { padding: 20px 24px; }
-.abt-card__desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
-.abt-card__features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-.abt-card__features li {
-  font-size: 13px; color: var(--text-secondary);
-  display: flex; align-items: center; gap: 8px;
-}
-.abt-card__features li::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--red); flex-shrink: 0;
-}
-
-/* ═══ NEWS ═══ */
-.news-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 18px; margin-top: 48px;
-}
-.news-card {
-  background: white; border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
-}
-.news-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.1); }
-.news-card__img { width: 100%; height: 180px; object-fit: cover; background: var(--bg-grey); }
-.news-card__body { padding: 20px; }
-.news-card__tag {
-  display: inline-block; font-size: 10px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--red); background: var(--red-light);
-  padding: 3px 9px; border-radius: 5px; margin-bottom: 10px;
-}
-.news-card__title { font-size: 16px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
-.news-card__text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
-.news-card__date { font-size: 11px; color: var(--text-light); margin-top: 12px; }
-
-/* news loading state */
-.news-loading {
-  grid-column: 1/-1; text-align: center;
-  padding: 40px; color: var(--text-light); font-size: 14px;
-}
-
-/* ═══ EINSÄTZE ═══ */
-.einsaetze-container { margin-top: 48px; }
-
-.einsatz-filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-.filter-btn {
-  padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
-  border: 1.5px solid var(--border); background: white; color: var(--text-secondary);
-  cursor: pointer; font-family: inherit; display: flex; align-items: center; gap: 5px;
-  transition: all 0.2s;
-}
-.filter-dot { width: 7px; height: 7px; border-radius: 50%; }
-.filter-btn.active.f-brand    { background: #CC0000; border-color: #CC0000; color: white; }
-.filter-btn.active.f-hilfe    { background: #1a56db; border-color: #1a56db; color: white; }
-.filter-btn.active.f-ubung    { background: #2e7d32; border-color: #2e7d32; color: white; }
-.filter-btn.active.f-sonstige { background: #555;    border-color: #555;    color: white; }
-
-.einsatz-stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-.einsatz-stat-pill {
-  background: white; border: 1px solid var(--border);
-  border-radius: 8px; padding: 7px 14px; font-size: 13px;
-}
-.einsatz-stat-pill strong { font-weight: 700; margin-right: 4px; }
-.einsatz-stat-pill span   { color: var(--text-secondary); }
-
-.einsatz-table { background: white; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-.einsatz-group-header {
-  background: #f8f8f8; padding: 8px 16px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-  color: var(--text-light); border-bottom: 1px solid var(--border);
-}
-.einsatz-row {
-  display: grid; grid-template-columns: 48px 110px 85px 1fr 120px;
-  align-items: center; gap: 12px; padding: 14px 16px;
-  border-bottom: 1px solid #f5f5f5; transition: background 0.15s;
-}
-.einsatz-row:last-child { border-bottom: none; }
-.einsatz-row:hover { background: #fafafa; }
-.einsatz-nr { font-size: 20px; font-weight: 800; color: #ddd; text-align: center; }
-.einsatz-date strong { display: block; font-size: 13px; font-weight: 700; }
-.einsatz-date span   { font-size: 11px; color: var(--text-light); }
-.einsatz-time { font-size: 13px; color: var(--text-secondary); font-variant-numeric: tabular-nums; }
-.einsatz-title { font-size: 14px; font-weight: 600; }
-.einsatz-title a { color: var(--text); transition: color 0.2s; }
-.einsatz-title a:hover { color: var(--red); }
-.einsatz-empty { padding: 40px; text-align: center; color: var(--text-light); font-size: 14px; }
-
-.badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
-  padding: 3px 9px; border-radius: 6px; white-space: nowrap;
-}
-.badge--brand    { background: #ffeaea; color: #cc0000; }
-.badge--hilfe    { background: #e8f0fe; color: #1a56db; }
-.badge--ubung    { background: #e8f5e9; color: #2e7d32; }
-.badge--sonstige { background: #f5f5f5; color: #666; }
-
-.einsatz-loading { padding: 40px; text-align: center; color: var(--text-light); font-size: 14px; }
-
-/* ═══ MITMACHEN ═══ */
-.mitmachen { background: linear-gradient(135deg, #CC0000, #990000); padding: 64px 24px; text-align: center; position: relative; overflow: hidden; }
-.mitmachen::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
-  pointer-events: none;
-}
-.mitmachen-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
-.mitmachen h2 { font-size: clamp(28px,4vw,48px); font-weight: 800; color: white; letter-spacing: -1.5px; margin-bottom: 14px; }
-.mitmachen p  { font-size: 17px; color: rgba(255,255,255,0.75); margin-bottom: 32px; line-height: 1.6; }
-.mitmachen-perks { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
-.mitmachen-perk { font-size: 13px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 7px; }
-.mitmachen-perk-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.6); flex-shrink: 0; }
-
-/* ═══ KONTAKT ═══ */
-.kontakt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; align-items: start; }
-.kontakt-card { background: var(--bg); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
-.kontakt-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 20px; }
-.kontakt-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
-.kontakt-row-icon {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: var(--red-light); flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.kontakt-row-icon svg { width: 16px; height: 16px; fill: var(--red); }
-.kontakt-row strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 1px; }
-.kontakt-row span   { font-size: 13px; color: var(--text-secondary); }
-.kontakt-map { border-radius: var(--radius); overflow: hidden; height: 280px; border: 1px solid var(--border); }
-.kontakt-map iframe { width: 100%; height: 100%; border: none; display: block; }
-.doc-links { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
-.doc-link { font-size: 13px; color: var(--red); display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
-.doc-link:hover { opacity: 0.7; }
-
-/* ═══ INSTAGRAM ═══ */
-.insta-banner {
-  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
-  border-radius: 20px; padding: 44px; text-align: center;
-  margin-top: 48px;
-}
-.insta-banner h3 { font-size: 26px; font-weight: 700; color: white; margin-bottom: 8px; }
-.insta-banner p  { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
-.btn-insta {
-  background: white; color: #e1306c;
-  padding: 13px 30px; border-radius: 30px; font-size: 14px; font-weight: 700;
-  display: inline-block; transition: transform 0.2s, box-shadow 0.2s;
-}
-.btn-insta:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-
-/* ═══ FOOTER ═══ */
-.footer { background: #0a0a0a; padding: 48px 24px 0; }
-.footer-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
-.footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.footer-brand-logo-icon {
-  width: 36px; height: 36px; background: var(--red); border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-}
-.footer-brand-logo-icon svg { width: 20px; height: 20px; fill: white; }
-.footer-brand-logo-text { font-size: 14px; font-weight: 700; color: white; }
-.footer-desc { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.7; max-width: 260px; }
-.footer-col h4 { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); margin-bottom: 14px; }
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.42); transition: color 0.2s; cursor: pointer; }
-.footer-col ul a:hover, .footer-col ul button:hover { color: white; }
-.footer-col ul button { background: none; border: none; cursor: pointer; font-family: inherit; font-size: 13px; color: rgba(255,255,255,0.42); transition: color 0.2s; padding: 0; text-align: left; }
-.footer-col p { font-size: 13px; color: rgba(255,255,255,0.38); line-height: 1.8; }
-.footer-col a { color: rgba(255,255,255,0.38); transition: color 0.2s; }
-.footer-col a:hover { color: white; }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); margin-top: 40px; padding: 18px 0; text-align: center; }
-.footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.22); max-width: 960px; margin: 0 auto; }
-
-/* ═══ REVEAL ═══ */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-l { opacity: 0; transform: translateX(-24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal-l.visible { opacity: 1; transform: none; }
-.reveal-r { opacity: 0; transform: translateX(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.reveal-r.visible { opacity: 1; transform: none; }
-
-/* ═══ KEYFRAMES ═══ */
-@keyframes fadeUp     { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
-@keyframes scrollTrack{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:720px){
-  .nav-links { display: none; }
-  .hero-stats { flex-wrap: wrap; }
-  .hero-stat { padding: 14px 20px; }
-  .abt-grid { grid-template-columns: 1fr; }
-  .kontakt-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-  .einsatz-row { grid-template-columns: 40px 1fr 100px; }
-  .einsatz-date, .einsatz-time { display: none; }
-  .photo-track img { height: 150px; width: 220px; }
-}
-</style>
+<link rel="stylesheet" href="style.css">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
-<nav class="nav" id="mainNav">
-  <div class="nav-logo" onclick="scrollTo('#hero')">
-    <div class="nav-emblem">
-      <svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg>
-    </div>
-    <div class="nav-name">FF Hohenbostel<span>Freiwillige Feuerwehr</span></div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo" onclick="location.href='index.html'">
+    <div class="nav-emblem"><svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div>
+    <div class="nav-name">FF Hohenbostel<small>Freiwillige Feuerwehr</small></div>
   </div>
-  <ul class="nav-links">
-    <li><button onclick="scrollTo('#ueber-uns')">Über uns</button></li>
-    <li><button onclick="scrollTo('#abteilungen')">Abteilungen</button></li>
-    <li><button onclick="scrollTo('#einsaetze')">Einsätze</button></li>
-    <li><button onclick="scrollTo('#neuigkeiten')">Neuigkeiten</button></li>
-    <li><button onclick="scrollTo('#mitmachen')">Mitmachen</button></li>
-    <li><button onclick="scrollTo('#kontakt')">Kontakt</button></li>
-    <li><a href="tel:112" class="nav-emergency">🚒 112</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" data-page="index.html" class="active">Startseite</a></li>
+    <li><a href="abteilungen.html" data-page="abteilungen.html">Abteilungen</a></li>
+    <li><a href="einsaetze.html" data-page="einsaetze.html">Einsätze</a></li>
+    <li><a href="neuigkeiten.html" data-page="neuigkeiten.html">Neuigkeiten</a></li>
+    <li><a href="index.html#kontakt">Kontakt</a></li>
+    <li><a href="tel:112" class="nav-cta">🚒 112</a></li>
   </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero" id="hero">
-  <div class="hero-orb hero-orb--1"></div>
-  <div class="hero-orb hero-orb--2"></div>
-
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Freiwillige Feuerwehr · Hohenbostel</div>
     <h1 class="hero-title">
       Warte nicht auf Helden –
-      <span>werde einer.</span>
+      <em>werde einer.</em>
     </h1>
     <p class="hero-sub">Ehrenamtlich. Gemeinschaftlich. Unverzichtbar. Wir sind rund um die Uhr für Hohenbostel da.</p>
     <div class="hero-actions">
-      <a href="#" onclick="scrollTo('#mitmachen'); return false;" class="btn-white-solid">Jetzt mitmachen</a>
-      <a href="#" onclick="scrollTo('#einsaetze'); return false;" class="btn-outline-white">Einsätze ansehen</a>
+      <a href="abteilungen.html" class="btn-white">Jetzt mitmachen</a>
+      <a href="einsaetze.html" class="btn-ghost-white">Einsätze ansehen</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">24/7</div>
-        <div class="hero-stat-label">Einsatzbereit</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" id="hero-count">1</div>
-        <div class="hero-stat-label">Einsätze 2026</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">4</div>
-        <div class="hero-stat-label">Abteilungen</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">112</div>
-        <div class="hero-stat-label">Notruf</div>
-      </div>
+      <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-label">Einsatzbereit</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="hero-einsatz-count">–</div><div class="hero-stat-label">Einsätze 2026</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Abteilungen</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">112</div><div class="hero-stat-label">Notruf</div></div>
     </div>
   </div>
-
-  <div class="hero-scroll" onclick="scrollTo('#ueber-uns')">
+  <div class="scroll-hint" onclick="document.getElementById('start').scrollIntoView({behavior:'smooth'})">
     <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
   </div>
 </section>
 
-<!-- Photo Strip -->
+<!-- PHOTO STRIP -->
 <div class="photo-strip">
   <div class="photo-track">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=820x10000:format=png/path/s629def15d2734185/image/i9c6f98047cfe98f4/version/1773682671/image.png" alt="">
@@ -523,216 +63,86 @@ img { display: block; max-width: 100%; }
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=597x1024:format=jpg/path/s629def15d2734185/image/i5dfa663430a76f5c/version/1736492610/image.jpg" alt="">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1070x10000:format=jpg/path/s629def15d2734185/image/i35dcd4ad9c6570d7/version/1691304359/image.jpg" alt="">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=508x10000:format=jpg/path/s629def15d2734185/image/i582bdca028af2ab4/version/1470411081/image.jpg" alt="">
-    <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=597x10000:format=jpg/path/s629def15d2734185/image/i8df30ca464a47264/version/1773683932/image.jpg" alt="">
-    <!-- duplicate for loop -->
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=820x10000:format=png/path/s629def15d2734185/image/i9c6f98047cfe98f4/version/1773682671/image.png" alt="">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=780x1024:format=jpg/path/s629def15d2734185/image/i793168b79b4a091e/version/1770376332/image.jpg" alt="">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=597x1024:format=jpg/path/s629def15d2734185/image/i5dfa663430a76f5c/version/1736492610/image.jpg" alt="">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=1070x10000:format=jpg/path/s629def15d2734185/image/i35dcd4ad9c6570d7/version/1691304359/image.jpg" alt="">
     <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=508x10000:format=jpg/path/s629def15d2734185/image/i582bdca028af2ab4/version/1470411081/image.jpg" alt="">
-    <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=597x10000:format=jpg/path/s629def15d2734185/image/i8df30ca464a47264/version/1773683932/image.jpg" alt="">
   </div>
 </div>
 
-<!-- ═══ ÜBER UNS ═══ -->
-<section class="section" id="ueber-uns">
+<!-- KURZÜBERSICHT -->
+<section class="section" id="start">
   <div class="section-inner">
-    <div class="eyebrow reveal">Unser Auftrag</div>
-    <h2 class="section-title reveal">Schutz, Gemeinschaft,<br>Engagement.</h2>
-    <p class="section-sub reveal">Der Förderverein und die Einsatzabteilung der FF Hohenbostel arbeiten Hand in Hand für den Brandschutz und das Gemeinschaftsleben in unserem Ort.</p>
+    <div class="eyebrow reveal">Was wir tun</div>
+    <h2 class="section-title reveal">Feuerwehr Hohenbostel auf einen Blick</h2>
+    <p class="section-sub reveal">Ehrenamtlicher Brandschutz, Gemeinschaft und Nachwuchsförderung in Hohenbostel – erfahre mehr auf unseren Seiten.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
-      <div class="reveal-l">
-        <div style="border-radius:24px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 24px 60px rgba(0,0,0,0.13);position:relative">
-          <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=780x1024:format=jpg/path/s629def15d2734185/image/i793168b79b4a091e/version/1770376332/image.jpg" style="width:100%;height:100%;object-fit:cover" alt="FF Hohenbostel">
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.6),transparent);padding:18px 20px 14px">
-            <p style="color:white;font-size:14px;font-weight:600">Kameradinnen & Kameraden</p>
-            <span style="color:rgba(255,255,255,0.7);font-size:12px">Ortsfeuerwehr Hohenbostel</span>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-r" style="display:flex;flex-direction:column;gap:6px">
-        <div style="padding:16px;border-radius:12px;transition:background 0.2s" onmouseenter="this.style.background='#f5f5f7'" onmouseleave="this.style.background='transparent'">
-          <div style="display:flex;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:7px;flex-shrink:0"></div>
-            <div><strong style="display:block;font-size:15px;font-weight:600;margin-bottom:3px">Aktiver Brandschutz</strong><p style="font-size:14px;color:var(--text-secondary)">Wir treten aktiv für den Brandschutz in Hohenbostel und der gesamten Samtgemeinde ein.</p></div>
-          </div>
-        </div>
-        <div style="padding:16px;border-radius:12px;transition:background 0.2s" onmouseenter="this.style.background='#f5f5f7'" onmouseleave="this.style.background='transparent'">
-          <div style="display:flex;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:7px;flex-shrink:0"></div>
-            <div><strong style="display:block;font-size:15px;font-weight:600;margin-bottom:3px">Materielle Förderung</strong><p style="font-size:14px;color:var(--text-secondary)">Der Förderverein unterstützt Einsatzabteilung, Jugendfeuerwehr und Floriansgruppe.</p></div>
-          </div>
-        </div>
-        <div style="padding:16px;border-radius:12px;transition:background 0.2s" onmouseenter="this.style.background='#f5f5f7'" onmouseleave="this.style.background='transparent'">
-          <div style="display:flex;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:7px;flex-shrink:0"></div>
-            <div><strong style="display:block;font-size:15px;font-weight:600;margin-bottom:3px">Gemeinschaft & Veranstaltungen</strong><p style="font-size:14px;color:var(--text-secondary)">Von Kinderfest bis Osterfeuer – wir bereichern das Ortsleben in Hohenbostel.</p></div>
-          </div>
-        </div>
-        <div style="padding:16px;border-radius:12px;transition:background 0.2s" onmouseenter="this.style.background='#f5f5f7'" onmouseleave="this.style.background='transparent'">
-          <div style="display:flex;gap:12px">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:7px;flex-shrink:0"></div>
-            <div><strong style="display:block;font-size:15px;font-weight:600;margin-bottom:3px">Soziales Engagement</strong><p style="font-size:14px;color:var(--text-secondary)">Die Feuerwehr ist eine zentrale Einrichtung, die das Gemeinschaftsleben fördert.</p></div>
-          </div>
-        </div>
-      </div>
+    <div class="preview-grid">
+      <a href="abteilungen.html" class="preview-card reveal">
+        <div class="preview-card-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+        <h3>Abteilungen</h3>
+        <p>Einsatzabteilung, Jugendfeuerwehr, Förderverein und Altersabteilung – für jeden ist etwas dabei.</p>
+        <span class="preview-card-link">Mehr erfahren →</span>
+      </a>
+      <a href="einsaetze.html" class="preview-card reveal">
+        <div class="preview-card-icon"><svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div>
+        <h3>Einsätze</h3>
+        <p>Alle Einsätze, Übungen und Hilfeleistungen der Ortsfeuerwehr Hohenbostel im Überblick.</p>
+        <span class="preview-card-link">Alle Einsätze →</span>
+      </a>
+      <a href="neuigkeiten.html" class="preview-card reveal">
+        <div class="preview-card-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <h3>Neuigkeiten</h3>
+        <p>Aktuelle Berichte, Veranstaltungen und News aus dem Vereinsleben der FF Hohenbostel.</p>
+        <span class="preview-card-link">Alle Neuigkeiten →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ═══ ABTEILUNGEN ═══ -->
-<section class="section section--grey" id="abteilungen">
+<!-- LETZTE EINSÄTZE VORSCHAU -->
+<section class="section section--grey">
   <div class="section-inner">
-    <div class="eyebrow reveal">Abteilungen</div>
-    <h2 class="section-title reveal">Für jeden ist etwas dabei.</h2>
-    <p class="section-sub reveal">Von der aktiven Einsatzabteilung bis zur Altersabteilung – die FF Hohenbostel bietet Menschen jeden Alters eine Heimat.</p>
-
-    <div class="abt-grid">
-      <!-- Einsatzabteilung -->
-      <div class="abt-card reveal">
-        <div class="abt-card__header">
-          <div class="abt-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg>
-          </div>
-          <div class="abt-card__name">Einsatzabteilung</div>
-          <div class="abt-card__age">Ab 18 Jahren · Aktiver Dienst</div>
-        </div>
-        <div class="abt-card__body">
-          <p class="abt-card__desc">Die Einsatzabteilung bildet das Herzstück der Feuerwehr. Unsere aktiven Kameradinnen und Kameraden sind rund um die Uhr einsatzbereit und rücken bei Bränden, Unfällen und Hilfeleistungen aus.</p>
-          <ul class="abt-card__features">
-            <li>24/7 Einsatzbereitschaft</li>
-            <li>Brandbekämpfung & Hilfeleistung</li>
-            <li>Technische Rettung</li>
-            <li>Regelmäßige Übungen & Ausbildung</li>
-            <li>Kostenlose Feuerwehrausbildung</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Jugendfeuerwehr -->
-      <div class="abt-card reveal">
-        <div class="abt-card__header">
-          <div class="abt-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-6 9a2 2 0 0 0-2 2v1c0 2.2 3.6 4 8 4s8-1.8 8-4v-1a2 2 0 0 0-2-2H6z"/></svg>
-          </div>
-          <div class="abt-card__name">Jugendfeuerwehr</div>
-          <div class="abt-card__age">10 – 17 Jahre</div>
-        </div>
-        <div class="abt-card__body">
-          <p class="abt-card__desc">Die Jugendfeuerwehr bildet den Nachwuchs für die aktive Einsatzabteilung aus. Mit Spaß, Teamgeist und spannenden Aktivitäten werden junge Menschen an das Feuerwehrwesen herangeführt.</p>
-          <ul class="abt-card__features">
-            <li>Zeltlager & Ausflüge</li>
-            <li>Leistungswettkämpfe</li>
-            <li>Feuerwehrtechnische Grundausbildung</li>
-            <li>Gemeinschaftsaktivitäten</li>
-            <li>Übergang in Einsatzabteilung mit 18</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Förderverein -->
-      <div class="abt-card reveal">
-        <div class="abt-card__header">
-          <div class="abt-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M17 10h-2V7l-3-4-3 4v3H7l-2 2v8h14v-8l-2-2zm-5-1.5L13.5 10h-3L12 8.5zm1 9.5h-2v-3h2v3z"/></svg>
-          </div>
-          <div class="abt-card__name">Förderverein</div>
-          <div class="abt-card__age">Alle Altersgruppen · Offen für alle</div>
-        </div>
-        <div class="abt-card__body">
-          <p class="abt-card__desc">Der Förderverein unterstützt die Feuerwehr materiell und ideell. Als förderndes Mitglied trägst du zur Ausstattung und zu Veranstaltungen bei, ohne im aktiven Dienst zu sein.</p>
-          <ul class="abt-card__features">
-            <li>Unterstützung der Einsatzabteilung</li>
-            <li>Finanzierung von Ausrüstung</li>
-            <li>Organisation von Veranstaltungen</li>
-            <li>Kinderfest & Osterfeuer</li>
-            <li>Niedrigschwellige Mitgliedschaft</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Altersabteilung -->
-      <div class="abt-card reveal">
-        <div class="abt-card__header">
-          <div class="abt-card__icon">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <div class="abt-card__name">Altersabteilung</div>
-          <div class="abt-card__age">Ab 65 Jahren · Ehrenabteilung</div>
-        </div>
-        <div class="abt-card__body">
-          <p class="abt-card__desc">Die Altersabteilung ehrt unsere verdienten Kameradinnen und Kameraden, die jahrelang aktiven Dienst geleistet haben. Ihr Wissen und ihre Erfahrung sind für die Gemeinschaft unverzichtbar.</p>
-          <ul class="abt-card__features">
-            <li>Ehrenmitgliedschaft nach aktiver Zeit</li>
-            <li>Teilnahme an Veranstaltungen</li>
-            <li>Weitergabe von Erfahrung</li>
-            <li>Geselliges Beisammensein</li>
-            <li>Jährliche Kameradschaftspflege</li>
-          </ul>
-        </div>
-      </div>
+    <div class="eyebrow reveal">Aktuell</div>
+    <h2 class="section-title reveal">Letzte Einsätze</h2>
+    <div id="einsatz-preview" style="margin-top:32px">
+      <div class="einsatz-empty" style="padding:20px">Wird geladen…</div>
+    </div>
+    <div style="margin-top:20px;text-align:center">
+      <a href="einsaetze.html" class="btn-red">Alle Einsätze ansehen</a>
     </div>
   </div>
 </section>
 
-<!-- ═══ EINSÄTZE ═══ -->
-<section class="section" id="einsaetze">
+<!-- LETZTE NEWS VORSCHAU -->
+<section class="section">
   <div class="section-inner">
-    <div class="eyebrow reveal">Einsatzliste</div>
-    <h2 class="section-title reveal">Unsere Einsätze</h2>
-    <p class="section-sub reveal">Alle Einsätze der Ortsfeuerwehr Hohenbostel im Überblick. Verwaltet über Decap CMS.</p>
-
-    <div class="einsaetze-container">
-      <div class="einsatz-filters">
-        <button class="filter-btn f-brand active" onclick="toggleFilter(this,'brand')"><span class="filter-dot" style="background:#CC0000"></span>Brand</button>
-        <button class="filter-btn f-hilfe active" onclick="toggleFilter(this,'hilfe')"><span class="filter-dot" style="background:#1a56db"></span>Hilfeleistung</button>
-        <button class="filter-btn f-ubung active" onclick="toggleFilter(this,'ubung')"><span class="filter-dot" style="background:#2e7d32"></span>Übung</button>
-        <button class="filter-btn f-sonstige active" onclick="toggleFilter(this,'sonstige')"><span class="filter-dot" style="background:#555"></span>Sonstige</button>
-      </div>
-      <div class="einsatz-stats" id="einsatz-stats"></div>
-      <div class="einsatz-table" id="einsatz-list">
-        <div class="einsatz-loading">Einsätze werden geladen…</div>
-      </div>
+    <div class="eyebrow reveal">Neuigkeiten</div>
+    <h2 class="section-title reveal">Aktuelles aus Hohenbostel</h2>
+    <div class="news-grid" id="news-preview"></div>
+    <div style="margin-top:24px;text-align:center">
+      <a href="neuigkeiten.html" class="btn-red">Alle Neuigkeiten</a>
     </div>
   </div>
 </section>
 
-<!-- ═══ NEUIGKEITEN ═══ -->
-<section class="section section--grey" id="neuigkeiten">
-  <div class="section-inner">
-    <div class="eyebrow reveal">Aktuelles</div>
-    <h2 class="section-title reveal">Neuigkeiten aus Hohenbostel</h2>
-    <p class="section-sub reveal">Aktuelle Berichte, Veranstaltungen und Vereinsnews. Verwaltet über Decap CMS.</p>
-    <div class="news-grid" id="news-grid">
-      <div class="news-loading">Beiträge werden geladen…</div>
-    </div>
-
-    <!-- Instagram -->
-    <div class="insta-banner reveal">
-      <h3>@feuerwehr_hohenbostel</h3>
-      <p>Aktuelle Einsätze, Übungen und Einblicke direkt auf Instagram.</p>
-      <a href="https://www.instagram.com/feuerwehr_hohenbostel/" target="_blank" class="btn-insta">Jetzt folgen</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ MITMACHEN ═══ -->
-<section class="mitmachen" id="mitmachen">
+<!-- MITMACHEN -->
+<section class="mitmachen">
   <div class="mitmachen-inner">
     <h2>Dein Ehrenamt wartet auf dich.</h2>
     <p>Ob aktive Feuerwehr, Förderverein oder Jugendarbeit – bei der FF Hohenbostel findest du eine Gemeinschaft, die anpackt.</p>
     <div class="mitmachen-perks">
-      <div class="mitmachen-perk"><div class="mitmachen-perk-dot"></div>Kameradschaft & Teamgeist</div>
-      <div class="mitmachen-perk"><div class="mitmachen-perk-dot"></div>Kostenlose Ausbildung</div>
-      <div class="mitmachen-perk"><div class="mitmachen-perk-dot"></div>Sinnvolles Engagement</div>
-      <div class="mitmachen-perk"><div class="mitmachen-perk-dot"></div>Gemeinsame Veranstaltungen</div>
+      <div class="mitmachen-perk">Kameradschaft & Teamgeist</div>
+      <div class="mitmachen-perk">Kostenlose Ausbildung</div>
+      <div class="mitmachen-perk">Sinnvolles Engagement</div>
+      <div class="mitmachen-perk">Gemeinsame Veranstaltungen</div>
     </div>
-    <a href="mailto:info@ff-hohenbostel.de" class="btn-white-solid">Jetzt Kontakt aufnehmen</a>
+    <a href="abteilungen.html" class="btn-white">Mehr erfahren</a>
   </div>
 </section>
 
-<!-- ═══ KONTAKT ═══ -->
+<!-- KONTAKT -->
 <section class="section section--grey" id="kontakt">
   <div class="section-inner">
     <div class="eyebrow reveal">Kontakt</div>
@@ -740,20 +150,10 @@ img { display: block; max-width: 100%; }
     <div class="kontakt-grid">
       <div class="kontakt-card reveal-l">
         <h3>Gerätehaus & Kontakt</h3>
-        <div class="kontakt-row">
-          <div class="kontakt-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg></div>
-          <div><strong>Adresse</strong><span>Große Koppel 2, 29553 Bienenbüttel OT Hohenbostel</span></div>
-        </div>
-        <div class="kontakt-row">
-          <div class="kontakt-row-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
-          <div><strong>E-Mail</strong><span>info@ff-hohenbostel.de</span></div>
-        </div>
-        <div class="kontakt-row">
-          <div class="kontakt-row-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm.5 5.5H11v6l5.2 3.1.8-1.3-4.5-2.7V7.5z"/></svg></div>
-          <div><strong>Notruf</strong><span style="font-size:18px;font-weight:800;color:var(--red)">112</span></div>
-        </div>
+        <div class="kontakt-row"><div class="kontakt-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg></div><div><strong>Adresse</strong><span>Große Koppel 2, 29553 Bienenbüttel OT Hohenbostel</span></div></div>
+        <div class="kontakt-row"><div class="kontakt-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div><div><strong>E-Mail</strong><span>info@ff-hohenbostel.de</span></div></div>
+        <div class="kontakt-row"><div class="kontakt-icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm.5 5.5H11v6l5.2 3.1.8-1.3-4.5-2.7V7.5z"/></svg></div><div><strong>Notruf</strong><span style="font-size:17px;font-weight:800;color:var(--red)">112</span></div></div>
         <div class="doc-links">
-          <p style="font-size:12px;color:var(--text-light);margin-bottom:6px">Formulare & Dokumente</p>
           <a href="https://www.ff-hohenbostel.de/app/download/12828495136/Satzung_F%C3%B6rderverein_Freiwillige_Feuerwehr_Hohenbostel.pdf" target="_blank" class="doc-link">↓ Satzung des Fördervereins</a>
           <a href="https://www.ff-hohenbostel.de/app/download/12828497936/Beitragsordnung_F%C3%B6rderverein_der_Freiwilligen_Feuerwehr_Hohenbostel.pdf" target="_blank" class="doc-link">↓ Beitragsordnung</a>
           <a href="https://www.ff-hohenbostel.de/app/download/12828152836/Beitrittserkl%C3%A4rung_SEPA_Lastschrift_+FV_der_Freiwilligen_Feuerwehr_Hohenbostel.pdf" target="_blank" class="doc-link">↓ Mitgliedsantrag & SEPA</a>
@@ -766,198 +166,65 @@ img { display: block; max-width: 100%; }
   </div>
 </section>
 
-<!-- ═══ FOOTER ═══ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-brand-logo">
-        <div class="footer-brand-logo-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div>
-        <span class="footer-brand-logo-text">FF Hohenbostel</span>
-      </div>
-      <p class="footer-desc">Ehrenamtlicher Brandschutz und Gemeinschaft in Hohenbostel – rund um die Uhr für euch da. Seit Generationen.</p>
+      <div class="footer-logo"><div class="footer-logo-icon"><svg viewBox="0 0 24 24" fill="white"><path d="M12 2C9.8 2 8 4 8 6.5c0 1.6.8 3 2 3.9L8 22h8l-2-11.6c1.2-.9 2-2.3 2-3.9C18 4 16.2 2 14 2h-2z"/></svg></div><span class="footer-logo-text">FF Hohenbostel</span></div>
+      <p class="footer-desc">Ehrenamtlicher Brandschutz und Gemeinschaft in Hohenbostel – rund um die Uhr für euch da.</p>
     </div>
-    <div class="footer-col">
-      <h4>Navigation</h4>
-      <ul>
-        <li><button onclick="scrollTo('#ueber-uns')">Über uns</button></li>
-        <li><button onclick="scrollTo('#abteilungen')">Abteilungen</button></li>
-        <li><button onclick="scrollTo('#einsaetze')">Einsätze</button></li>
-        <li><button onclick="scrollTo('#neuigkeiten')">Neuigkeiten</button></li>
-        <li><button onclick="scrollTo('#mitmachen')">Mitmachen</button></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Kontakt</h4>
-      <p>
-        Große Koppel 2<br>29553 Bienenbüttel<br>OT Hohenbostel<br><br>
-        <a href="mailto:info@ff-hohenbostel.de">info@ff-hohenbostel.de</a><br><br>
-        <a href="https://www.instagram.com/feuerwehr_hohenbostel/" target="_blank">Instagram</a><br>
-        <a href="https://www.ff-hohenbostel.de/about/">Impressum</a> ·
-        <a href="https://www.ff-hohenbostel.de/j/privacy">Datenschutz</a>
+    <div class="footer-col"><h4>Seiten</h4><ul>
+      <li><a href="index.html">Startseite</a></li>
+      <li><a href="abteilungen.html">Abteilungen</a></li>
+      <li><a href="einsaetze.html">Einsätze</a></li>
+      <li><a href="neuigkeiten.html">Neuigkeiten</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>Kontakt</h4>
+      <p>Große Koppel 2<br>29553 Bienenbüttel<br>OT Hohenbostel<br><br>
+      <a href="mailto:info@ff-hohenbostel.de">info@ff-hohenbostel.de</a><br><br>
+      <a href="https://www.instagram.com/feuerwehr_hohenbostel/" target="_blank">Instagram</a><br>
+      <a href="https://www.ff-hohenbostel.de/about/">Impressum</a> · <a href="https://www.ff-hohenbostel.de/j/privacy">Datenschutz</a>
       </p>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>© 2026 Förderverein der Freiwilligen Feuerwehr Hohenbostel e.V. · Im Notfall: 112</p>
-  </div>
+  <div class="footer-bar"><p>© 2026 Förderverein der Freiwilligen Feuerwehr Hohenbostel e.V. · Im Notfall: 112</p></div>
 </footer>
 
+<script src="main.js"></script>
 <script>
-// ── SCROLL HELPER ───────────────────────────────────────────────────────
-function scrollTo(hash) {
-  const el = document.querySelector(hash);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
-
-// ── REVEAL ON SCROLL ────────────────────────────────────────────────────
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 60);
-      revealObs.unobserve(e.target);
+// Netlify Identity → nach Login zu /admin weiterleiten
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('init', user => {
+    if (!user) {
+      window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
     }
   });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => revealObs.observe(el));
-
-// ── LOAD MARKDOWN FILES FROM /content ──────────────────────────────────
-// In production with Netlify, these are static markdown files.
-// We fetch and parse them client-side using a simple front matter parser.
-
-function parseFrontMatter(text) {
-  const match = text.match(/^---\n([\s\S]*?)\n---/);
-  if (!match) return { meta: {}, body: text };
-  const meta = {};
-  match[1].split('\n').forEach(line => {
-    const [key, ...rest] = line.split(':');
-    if (key) meta[key.trim()] = rest.join(':').trim().replace(/^"|"$/g,'');
-  });
-  const body = text.slice(match[0].length).trim();
-  return { meta, body };
 }
 
-// ── EINSÄTZE ─────────────────────────────────────────────────────────────
-const EINSATZ_FILES = [
-  '/content/einsaetze/2026-06-19-verkehrsunfall-b65.md',
-];
+// Einsätze Vorschau (max 3)
+loadEinsaetze().then(data => {
+  const c = document.getElementById('hero-einsatz-count');
+  if (c) c.textContent = data.length;
 
-let allEinsaetze = [];
-let activeFilters = new Set(['brand','hilfe','ubung','sonstige']);
+  const preview = document.getElementById('einsatz-preview');
+  if (!preview) return;
+  if (!data.length) { preview.innerHTML = '<div class="einsatz-empty">Noch keine Einsätze eingetragen.</div>'; return; }
 
-const BADGE = {
-  brand:    { cls:'badge--brand',    label:'Brand' },
-  hilfe:    { cls:'badge--hilfe',    label:'Hilfe' },
-  ubung:    { cls:'badge--ubung',    label:'Übung' },
-  sonstige: { cls:'badge--sonstige', label:'Sonst.' },
-};
-const MONTHS = ['','Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+  const top3 = data.slice(0, 3);
+  preview.innerHTML = '<div class="einsatz-table">' + top3.map(e => {
+    const b = BADGE[e.typ] || BADGE.sonstige;
+    return `<div class="einsatz-row">
+      <div class="e-nr">${e.nummer||'–'}</div>
+      <div class="e-date"><strong>${e.datum||'–'}</strong><span>${e.tag||''}</span></div>
+      <div class="e-time">${e.zeit||'–'} Uhr</div>
+      <div class="e-title">${e.title||'–'}</div>
+      <span class="badge ${b.cls}">${b.label}</span>
+    </div>`;
+  }).join('') + '</div>';
+});
 
-async function loadEinsaetze() {
-  const results = await Promise.all(
-    EINSATZ_FILES.map(f => fetch(f).then(r => r.ok ? r.text() : null).catch(() => null))
-  );
-  allEinsaetze = results
-    .filter(Boolean)
-    .map(txt => parseFrontMatter(txt).meta)
-    .sort((a,b) => parseInt(b.nummer||0) - parseInt(a.nummer||0));
-
-  document.getElementById('hero-count').textContent = allEinsaetze.length;
-  renderEinsaetze();
-}
-
-function renderEinsaetze() {
-  const filtered = allEinsaetze.filter(e => activeFilters.has(e.typ));
-  const counts = { brand:0, hilfe:0, ubung:0, sonstige:0 };
-  allEinsaetze.forEach(e => { if(counts[e.typ]!==undefined) counts[e.typ]++; });
-
-  // stats
-  document.getElementById('einsatz-stats').innerHTML = `
-    <div class="einsatz-stat-pill"><strong>${filtered.length}</strong><span>Einsätze</span></div>
-    <div class="einsatz-stat-pill"><strong style="color:#CC0000">${counts.brand}</strong><span>Brände</span></div>
-    <div class="einsatz-stat-pill"><strong style="color:#1a56db">${counts.hilfe}</strong><span>Hilfeleistungen</span></div>
-    <div class="einsatz-stat-pill"><strong style="color:#2e7d32">${counts.ubung}</strong><span>Übungen</span></div>
-  `;
-
-  if (!filtered.length) {
-    document.getElementById('einsatz-list').innerHTML = '<div class="einsatz-empty">Keine Einträge für die gewählten Filter.</div>';
-    return;
-  }
-
-  // group by month/year
-  const groups = {};
-  filtered.forEach(e => {
-    const parts = (e.datum||'').split('.');
-    const key = parts.length >= 3 ? `${parts[1]}.${parts[2]}` : 'Unbekannt';
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(e);
-  });
-
-  let html = '';
-  Object.keys(groups).forEach(key => {
-    const [m] = key.split('.');
-    html += `<div class="einsatz-group-header">${MONTHS[parseInt(m)]||key} ${key.split('.')[1]||''}</div>`;
-    groups[key].forEach(e => {
-      const b = BADGE[e.typ] || BADGE.sonstige;
-      const title = e.link
-        ? `<a href="${e.link}" target="_blank">${e.title||'–'}</a>`
-        : (e.title||'–');
-      html += `
-        <div class="einsatz-row">
-          <div class="einsatz-nr">${e.nummer||'–'}</div>
-          <div class="einsatz-date"><strong>${e.datum||'–'}</strong><span>${e.tag||''}</span></div>
-          <div class="einsatz-time">${e.zeit||'–'} Uhr</div>
-          <div class="einsatz-title">${title}</div>
-          <span class="badge ${b.cls}">${b.label}</span>
-        </div>`;
-    });
-  });
-  document.getElementById('einsatz-list').innerHTML = html;
-}
-
-function toggleFilter(btn, typ) {
-  if (activeFilters.has(typ)) {
-    if (activeFilters.size === 1) return;
-    activeFilters.delete(typ);
-    btn.classList.remove('active');
-  } else {
-    activeFilters.add(typ);
-    btn.classList.add('active');
-  }
-  renderEinsaetze();
-}
-
-// ── NEWS ─────────────────────────────────────────────────────────────────
-const NEWS_FILES = [
-  '/content/news/2026-06-19-neue-webseite.md',
-];
-
-async function loadNews() {
-  const results = await Promise.all(
-    NEWS_FILES.map(f => fetch(f).then(r => r.ok ? r.text() : null).catch(() => null))
-  );
-  const news = results.filter(Boolean).map(txt => parseFrontMatter(txt));
-
-  if (!news.length) {
-    document.getElementById('news-grid').innerHTML = '<div class="news-loading">Keine Beiträge vorhanden.</div>';
-    return;
-  }
-
-  document.getElementById('news-grid').innerHTML = news.map(({ meta, body }) => `
-    <div class="news-card">
-      ${meta.bild ? `<img class="news-card__img" src="${meta.bild}" alt="${meta.title||''}">` : ''}
-      <div class="news-card__body">
-        <span class="news-card__tag">${meta.tag||'Aktuelles'}</span>
-        <div class="news-card__title">${meta.title||'–'}</div>
-        <div class="news-card__text">${body.replace(/[#*]/g,'').substring(0,160)}${body.length>160?'…':''}</div>
-        <div class="news-card__date">${meta.datum||''}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ── INIT ────────────────────────────────────────────────────────────────
-loadEinsaetze();
-loadNews();
+// News Vorschau (max 3)
+loadNews().then(data => renderNewsCards(data, 'news-preview', 3));
 </script>
 </body>
 </html>
