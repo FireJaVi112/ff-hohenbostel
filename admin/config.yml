@@ -1,0 +1,57 @@
+backend:
+  name: git-gateway
+  branch: main
+
+locale: de
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+
+  - name: "einsaetze"
+    label: "Einsätze"
+    label_singular: "Einsatz"
+    folder: "content/einsaetze"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{nummer}} | {{datum}} – {{title}}"
+    sortable_fields: ["datum", "nummer"]
+    fields:
+      - { label: "Einsatznummer", name: "nummer", widget: "number", hint: "Laufende Nummer des Einsatzes" }
+      - { label: "Stichwort / Titel", name: "title", widget: "string", hint: "z.B. Verkehrsunfall B65" }
+      - { label: "Datum", name: "datum", widget: "string", hint: "z.B. 19.06.2026" }
+      - { label: "Uhrzeit", name: "zeit", widget: "string", hint: "z.B. 14:32" }
+      - label: "Wochentag"
+        name: "tag"
+        widget: "select"
+        options: ["Mo","Di","Mi","Do","Fr","Sa","So"]
+      - label: "Einsatzart"
+        name: "typ"
+        widget: "select"
+        options:
+          - { label: "🔥 Brand", value: "brand" }
+          - { label: "🚑 Hilfeleistung", value: "hilfe" }
+          - { label: "🎓 Übung", value: "ubung" }
+          - { label: "📋 Sonstige", value: "sonstige" }
+      - { label: "Link zum Bericht (optional)", name: "link", widget: "string", required: false }
+      - { label: "Kurzbeschreibung", name: "beschreibung", widget: "text", required: false }
+
+  - name: "news"
+    label: "Neuigkeiten"
+    label_singular: "Beitrag"
+    folder: "content/news"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{datum}} – {{title}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Datum", name: "datum", widget: "string", hint: "z.B. 19.06.2026" }
+      - label: "Kategorie"
+        name: "tag"
+        widget: "select"
+        options: ["Aktuelles","Ausrüstung","Fahrzeuge","Förderverein","Veranstaltung","Einsatz","Jugend","Gesucht"]
+      - { label: "Titelbild (optional)", name: "bild", widget: "image", required: false }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
